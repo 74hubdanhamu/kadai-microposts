@@ -27,6 +27,12 @@ class UsersController < ApplicationController
     end
   end
   
+  def likes #ユーザが追加したお気に入りを一覧表示
+    @user = User.find(params[:id])
+    @likes = @user.likes.page(params[:page])
+    counts(@user)
+  end
+  
   def followings
     @user = User.find(params[:id])
     @followings = @user.followings.page(params[:page])
